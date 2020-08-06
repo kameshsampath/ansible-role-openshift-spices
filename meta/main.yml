@@ -1,0 +1,32 @@
+galaxy_info:
+  author: Kamesh Sampath
+  role_name: openshift_app_spices
+  description: Setup OpenShift workshop cluster with required components
+
+  issue_tracker_url: http://github.com/redhat-developer-demos/ansible-role-workshopper/issues/tracker
+
+  license: license (Apache-2.0)
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - openshift
+    - knative
+    - istio
+    - serverless
+    - camelk
+    - camel
+    - kafka
+
+dependencies:
+  []
