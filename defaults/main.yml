@@ -1,16 +1,16 @@
 ---
 ocp_bin_dir: "{{ ansible_env.HOME }}/openshift/bin"
 ocp_version: 4.5.3
-download_clients: True
+download_clients: False
 # Users to create
 users:
-  create: True
+  create: False
   prefix: user
   start: 0
   end: 10
   ocpadmin_username: ocpadmin
 # Serverless(Knative)
-deploy_serverless: True
+deploy_serverless: False
 serverless_subcription_channel: "4.5"
 knative_serving_cr: serverless/cr/serving.yaml
 knative_eventing_cr: serverless/cr/eventing.yaml
