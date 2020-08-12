@@ -1,22 +1,22 @@
 # Ansible role for RedHat Developers Workshop
 
-Ansible to configure [OpenShift](https://try.openshift.com) cluster for Red Hat Developer Workshops and Demos.
+Ansible to configure https://try.openshift.com[OpenShift] cluster for Red Hat Developer Workshops and Demos.
 
 The role can also be used to install and configure:
 
-- [*] [OpenShift Serverless](https://knative.dev), both Serving and Eventing
+- [*] OpenShift Serverless both Serving and Eventing
 
-- [*] [OpenShift Pipelines](https://tekton.dev)
+- [*] OpenShift Pipelines
 
-- [*] [RedHat Servicemesh](https://maistra.io)
+- [*] RedHat Servicemesh
 
-- [*] [Strimzi Kafka](https://strimzi.io)
+- [*] https://strimzi.io[Strimzi Kafka]
 
-- [] [Skupper](https://skupper.io)
+- [] https://skupper.io[Skupper]
 
-- [*] [Apache Camel-K](https://camel.apache.org/docs/#camel-k)
+- [*] https://camel.apache.org/docs/#camel-k[Apache Camel-K]
 
-- [*] [Eclipse Che](https://knative.dev)
+- [*] https://www.eclipse.org/che/[Eclipse Che]
 
 == Requirements
 
