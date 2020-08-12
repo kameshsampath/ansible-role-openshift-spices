@@ -1,4 +1,5 @@
-- hosts: localhost
+- name: OpenShift Serverless with Kafka
+  hosts: localhost
   connection: local
 
   vars:
@@ -6,7 +7,6 @@
     download_clients: True
     deploy_serverless: True
     deploy_kafka: True
-    deploy_camel_k: True
     users:
       create: True
       start: 0

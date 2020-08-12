@@ -1,19 +1,19 @@
-- hosts: localhost
+- name: Serverless with OpenShift Pipelines
+  hosts: localhost
   connection: local
 
   vars:
     ocp_version: 4.5.3
     download_clients: False
-    deploy_servicemesh: True
+    deploy_serverless: True
+    deploy_kafka: False
+    deploy_camel_k: False
+    deploy_pipelines: False
     users:
       create: True
       start: 0
       end: 0
-    servicemesh_members:
-      create: True
-      prefix: tutorial
-      start: 1
-      end: 2
+      prefix: user
 
   vars_prompt:
     - name: kubeconfig

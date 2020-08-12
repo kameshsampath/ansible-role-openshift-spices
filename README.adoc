@@ -29,9 +29,9 @@ The role can also be used to install and configure:
 [source,bash]
 ----
 pip3 install \
-  -r https://raw.githubusercontent.com/kameshsampath/ansible-role-kind/master/requirements.txt
-ansible-galaxy role install kameshsampath.kind
-ansible-galaxy collection install community.kubernetes
+  -r https://raw.githubusercontent.com/kameshsampath/ansible-role-openshift-spices/master/requirements.txt
+ansible-galaxy role install -r https://raw.githubusercontent.com/kameshsampath/ansible-role-openshift-spices/master/requirements.yml
+ansible-galaxy collection install -r https://raw.githubusercontent.com/kameshsampath/ansible-role-openshift-spices/master/requirements.yml
 ----
 
 [NOTE]: For Windows its recommended to use Windows Subsystem for Linux (WSL)
@@ -155,11 +155,11 @@ Setting start and end to `0` will not create any users except `cluster-admin`
 
 == Example Playbooks
 
-The https://github.com/redhat-developer-demos/ansible-role-workshopper/tree/master/examples[examples] directory has various playbook examples to get started using this role
+The https://github.com/kameshsampath/ansible-role-openshift-spices/tree/master/examples[examples] directory has various playbook examples to get started using this role
 
 == License
 
-https://github.com/redhat-developer-demos/ansible-role-workshopper/tree/master/LICENSE[Apache v2]
+hhttps://github.com/kameshsampath/ansible-role-openshift-spices/tree/master/LICENSE[Apache v2]
 
 == Author Information
 
@@ -167,7 +167,7 @@ mailto:kamesh.sampath@hotmail.com[Kamesh Sampath]
 
 == Issues
 
-https://github.com/redhat-developer-demos/ansible-role-workshopper/issues[Issues]
+hhttps://github.com/kameshsampath/ansible-role-openshift-spices/issues[Issues]
 
 == Testing
 
@@ -180,7 +180,7 @@ https://github.com/redhat-developer-demos/ansible-role-workshopper/issues[Issues
 [source,bash]
 ----
 pip3 install \
-  -r https://raw.githubusercontent.com/kameshsampath/ansible-role-kind/master/molecule/requirements.txt
+  -r https://github.com/kameshsampath/ansible-role-openshift-spices/master/molecule/requirements.txt
 ----
 
 All tests are built using [molecule](https://molecule.readthedocs.io/en/latest/index.html) with following scenarios:

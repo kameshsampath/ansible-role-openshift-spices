@@ -1,18 +1,17 @@
-- hosts: localhost
+- name: OpenShift Serverless with Kafka, Kamel and Pipelines
+  hosts: localhost
   connection: local
 
   vars:
     ocp_version: 4.5.3
-    download_clients: False
+    download_clients: True
     deploy_serverless: True
     deploy_kafka: True
     deploy_camel_k: True
-    deploy_pipelines: True
     users:
       create: True
       start: 0
       end: 0
-      prefix: user
 
   vars_prompt:
     - name: kubeconfig
