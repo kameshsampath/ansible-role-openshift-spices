@@ -20,6 +20,8 @@ The role can also be used to install and configure:
 
 == Requirements
 
+- Python v3
+
 - https://www.docker.com/products/docker-desktop[Docker Desktop] or Docker for Linux
 
 - https://ansible.com[Ansible >= v2.9.10]
@@ -155,11 +157,20 @@ Setting start and end to `0` will not create any users except `cluster-admin`
 
 == Example Playbooks
 
-The https://github.com/kameshsampath/ansible-role-openshift-spices/tree/master/examples[examples] directory has various playbook examples to get started using this role
+The https://github.com/kameshsampath/ansible-role-openshift-spices/tree/master/examples[examples] directory has various playbook examples to get started using this role:
+
+e.g. 
+
+If you want to dploy OpenShift Serverless with Pipelines run:
+
+[source,bash]
+----
+ansible-playbook examples/serverless_pipelines.yml
+----
 
 == License
 
-hhttps://github.com/kameshsampath/ansible-role-openshift-spices/tree/master/LICENSE[Apache v2]
+https://github.com/kameshsampath/ansible-role-openshift-spices/tree/master/LICENSE[Apache v2]
 
 == Author Information
 
@@ -168,32 +179,3 @@ mailto:kamesh.sampath@hotmail.com[Kamesh Sampath]
 == Issues
 
 hhttps://github.com/kameshsampath/ansible-role-openshift-spices/issues[Issues]
-
-== Testing
-
-= Requirements
-
-- https://www.vagrantup.com[Vagrant]
-
-- Extra Python modules
-
-[source,bash]
-----
-pip3 install \
-  -r https://github.com/kameshsampath/ansible-role-openshift-spices/master/molecule/requirements.txt
-----
-
-All tests are built using [molecule](https://molecule.readthedocs.io/en/latest/index.html) with following scenarios:
-
-* Knative
-```shell
-molecule test  -s deploy_knative
-```
-* Clean machine Test
-
-This test run on clean vm (Centos8) using vagrant. It will run all the tests end to end and verify the same.
-
-```shell
-molecule test  -s vm
-```
-
