@@ -12,7 +12,7 @@ The role can also be used to install and configure:
 
 - [*] [Strimzi Kafka](https://strimzi.io)
 
-- [*] [Skupper](https://skupper.io)
+- [] [Skupper](https://skupper.io)
 
 - [*] [Apache Camel-K](https://camel.apache.org/docs/#camel-k)
 
