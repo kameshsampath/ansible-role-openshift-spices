@@ -54,19 +54,20 @@
   community.kubernetes.k8s:
     state: present
     kind: Namespace
-    name: "istio-system"
+    name: istio-system
 
 - name: Create Istio Control Plane
   community.kubernetes.k8s:
     state: present
+    namespace: istio-system
     definition: "{{ item | from_yaml }}"
     wait: yes
-    wait_timeout: 180
+    wait_timeout: 300
     wait_sleep: 10
     wait_condition:
       type: Ready
   with_file: "{{ servicemesh_cr }}"
-  no_log: True
+  no_log: "{{ supress_log }}"
   register: istio_control_plane_status
 
 - name: Create ServiceMesh projects
