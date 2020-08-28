@@ -10,25 +10,13 @@
   include_tasks: users.yml
   when: users.create
 
-- name: Deploy RedHat OpenShift Service Mesh
-  include_tasks: deploy_servicemesh.yml
-  when: deploy_servicemesh
-
-- name: Deploy OpenShift Pipelines
-  include_tasks: deploy_pipelines.yml
-  when: deploy_pipelines
+- name: Deploy ACM
+  include_tasks: deploy_acm.yml
+  when: deploy_acm
 
 - name: Deploy Argo CD
   include_tasks: deploy_argocd.yml
   when: deploy_argocd
-
-- name: Deploy OpenShift Serverless
-  include_tasks: deploy_serverless.yml
-  when: deploy_serverless
-
-- name: Deploy Strimzi Kafka
-  include_tasks: deploy_kafka.yml
-  when: deploy_kafka
 
 - name: Deploy Camel K
   include_tasks: deploy_camel_k.yml
@@ -37,3 +25,20 @@
 - name: Deploy Eclipse Che
   include_tasks: deploy_che.yml
   when: deploy_che
+
+- name: Deploy OpenShift Pipelines
+  include_tasks: deploy_pipelines.yml
+  when: deploy_pipelines
+
+- name: Deploy OpenShift Serverless
+  include_tasks: deploy_serverless.yml
+  when: deploy_serverless
+
+
+- name: Deploy OpenShift Service Mesh
+  include_tasks: deploy_servicemesh.yml
+  when: deploy_servicemesh
+
+- name: Deploy Strimzi Kafka
+  include_tasks: deploy_kafka.yml
+  when: deploy_kafka

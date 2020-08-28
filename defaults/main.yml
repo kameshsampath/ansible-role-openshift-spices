@@ -1,6 +1,6 @@
 ---
 ocp_bin_dir: "{{ ansible_env.HOME }}/openshift/bin"
-ocp_version: 4.5.3
+ocp_version: 4.5.6
 download_clients: False
 # Users to create
 users:
@@ -20,6 +20,7 @@ deploy_pipelines: False
 deploy_argocd: False
 argocd_namespace: argocd
 argocd_cr: argocd/cr.yaml
+argocd_release_channel: alpha
 #Strimzi Kafka
 deploy_kafka: False
 kakfa_cluster_name: my-cluster
@@ -39,6 +40,9 @@ servicemesh_members:
   end: 10
 # ACM
 deploy_acm: False
+acm_namespace: advanced-cluster-management
+acm_cr: acm/cr.yaml
+acm_release_channel: release-2.0
 # Eclipse Che
 deploy_che: False
 eclipse_che_cr: che/cr.yaml

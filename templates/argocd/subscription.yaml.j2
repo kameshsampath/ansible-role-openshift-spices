@@ -5,7 +5,7 @@ metadata:
   name: argocd-operator
   namespace: argocd
 spec:
-  channel: alpha
+  channel: {{ argocd_release_channel }}
   name: argocd-operator
   source: community-operators
   sourceNamespace: openshift-marketplace

@@ -2,7 +2,7 @@
   connection: local
 
   vars:
-    ocp_version: 4.5.3
+    ocp_version: 4.5.6
     download_clients: True
     deploy_serverless: True
     users:
@@ -14,7 +14,7 @@
     - name: kubeconfig
       prompt: 'Provide the full path to KUBECONFIG'
       private: no
-      default: "{{ ansible_env.KUBECONFIG|default('/Users/kameshs/openshift/gcp/auth/kubeconfig') }}"
+      default:  "{{ ansible_env.KUBECONFIG | default( lookup('env','HOME') + '/openshift/gcp/auth/kubeconfig' ) }}"
       when: ansible_env.K8S_AUTH_KUBECONFIG
 
     - name: cloud_profile
@@ -36,4 +36,4 @@
     K8S_AUTH_KUBECONFIG: '{{ kubeconfig }}'
 
   roles:
-    - kameshsampath.openshfit_app_spices
+    - kameshsampath.openshift_app_spices

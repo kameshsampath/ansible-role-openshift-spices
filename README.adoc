@@ -4,17 +4,19 @@ Ansible to configure https://try.openshift.com[OpenShift] cluster for Red Hat De
 
 The role can also be used to install and configure:
 
-- [*] OpenShift Serverless both Serving and Eventing
+- [*] Red Hat OpenShift Serverless both Serving and Eventing
 
-- [*] OpenShift Pipelines
+- [*] Red Hat OpenShift Pipelines
 
 - [*] https://argoproj.github.io/argo-cd/[Argo CD]
 
-- [*] RedHat Servicemesh
+- [*] Red Hat OpenShift Service Mesh
 
 - [*] https://strimzi.io[Strimzi Kafka]
 
-- [] https://skupper.io[Skupper]
+- [*] https://www.redhat.com/en/technologies/management/advanced-cluster-management[Red Hat Advanced Cluster Management for Kubernetes]
+
+- [ ] https://skupper.io[Skupper]
 
 - [*] https://camel.apache.org/docs/#camel-k[Apache Camel-K]
 
@@ -57,7 +59,7 @@ ansible-galaxy collection install -r https://raw.githubusercontent.com/kameshsam
 
 |ocp_version
 |The minimum OpenShift version to use 
-|4.5.3
+|4.5.6
 
 | deploy_serverless 
 | Deploy OpenShift Serverless 
@@ -86,6 +88,22 @@ ansible-galaxy collection install -r https://raw.githubusercontent.com/kameshsam
 | argocd_cr
 | The Argo CD Custom resource
 | argocd/cr.yaml
+
+| argocd_release_channel
+| The Argo CD Release Channel
+| alpha
+
+| deploy_acm
+| Deploy Advanced Cluster Management for Kubernetes(ACM)
+| False 
+
+| acm_cr
+| The ACM Custom resource
+| acm/cr.yaml
+
+| acm_release_channel
+| The ACM Release Channel
+| release-2.0
 
 | deploy_servicemesh 
 | Deploy OpenShift Pipelines 
