@@ -4,7 +4,7 @@
     api_version: operators.coreos.com/v1alpha1
     kind: Subscription
     name: "{{ subscription_name }}"
-    namespace: "{{ sub_namespace|default('openshift-operators') }}"
+    namespace: "{{ sub_namespace | default('openshift-operators') }}"
   register: sub_csv_status
   until: (sub_csv_status.resources[0] is defined and sub_csv_status.resources[0].status.installedCSV is defined)
   retries: 18
@@ -30,7 +30,7 @@
     api_version: operators.coreos.com/v1alpha1
     kind:  ClusterServiceVersion
     name: "{{ sub_installed_csv }}"
-    namespace: "{{ sub_namedspace|default('openshift-operators') }}"
+    namespace: "{{ sub_namespace | default('openshift-operators') }}"
   register: sub_installed_csv_status
   until: (sub_installed_csv_status.resources[0] is defined and sub_installed_csv_status.resources[0].status.phase == 'Succeeded')
   retries: 18

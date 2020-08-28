@@ -18,6 +18,10 @@
   include_tasks: deploy_pipelines.yml
   when: deploy_pipelines
 
+- name: Deploy Argo CD
+  include_tasks: deploy_argocd.yml
+  when: deploy_argocd
+
 - name: Deploy OpenShift Serverless
   include_tasks: deploy_serverless.yml
   when: deploy_serverless

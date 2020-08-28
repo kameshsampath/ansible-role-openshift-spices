@@ -8,6 +8,8 @@ The role can also be used to install and configure:
 
 - [*] OpenShift Pipelines
 
+- [*] https://argoproj.github.io/argo-cd/[Argo CD]
+
 - [*] RedHat Servicemesh
 
 - [*] https://strimzi.io[Strimzi Kafka]
@@ -76,6 +78,14 @@ ansible-galaxy collection install -r https://raw.githubusercontent.com/kameshsam
 | deploy_pipelines 
 | Deploy OpenShift Pipelines 
 | False 
+
+| deploy_argocd
+| Deploy Argo CD
+| False 
+
+| argocd_cr
+| The Argo CD Custom resource
+| argocd/cr.yaml
 
 | deploy_servicemesh 
 | Deploy OpenShift Pipelines 

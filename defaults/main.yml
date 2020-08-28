@@ -15,7 +15,11 @@ serverless_subcription_channel: "4.5"
 knative_serving_cr: serverless/cr/serving.yaml
 knative_eventing_cr: serverless/cr/eventing.yaml
 # Pipelines
-deploy_Pipelines: False
+deploy_pipelines: False
+# Argo CD
+deploy_argocd: False
+argocd_namespace: argocd
+argocd_cr: argocd/cr.yaml
 #Strimzi Kafka
 deploy_kafka: False
 kakfa_cluster_name: my-cluster
