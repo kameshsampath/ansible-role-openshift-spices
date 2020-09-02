@@ -2,9 +2,9 @@
 
 - name: Create ACM namespace
   community.kubernetes.k8s:
-     state: present
-     kind: Namespace
-     name: "{{ acm_namespace }}"
+    state: present
+    kind: Namespace
+    name: "{{ acm_namespace }}"
 
 - name: Create ACM::Operator Group
   community.kubernetes.k8s:

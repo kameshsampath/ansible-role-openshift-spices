@@ -1,7 +1,4 @@
 ---
-
-- debug: msg="Using Kubeconfig '{{ ansible_env.K8S_AUTH_KUBECONFIG }}'"
-
 - name: Download OpenShift Clients
   include_tasks: download_clients.yml
   when: download_clients

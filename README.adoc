@@ -189,12 +189,14 @@ The https://github.com/kameshsampath/ansible-role-openshift-spices/tree/master/e
 
 e.g. 
 
-If you want to dploy OpenShift Serverless with Pipelines run:
+If you want to deploy OpenShift Serverless with Pipelines run:
 
 [source,bash]
 ----
 ansible-playbook examples/serverless_pipelines.yml
 ----
+
+If you dont have Ansible installed locally, you can use the project https://github.com/kameshsampath/openshift-spice-runner[openshift-spice-runner] to runt he playbooks using Docker and https://ansible-runner.readthedocs.io/en/latest/[Ansible Runner].
 
 == License
 
@@ -206,4 +208,4 @@ mailto:kamesh.sampath@hotmail.com[Kamesh Sampath]
 
 == Issues
 
-hhttps://github.com/kameshsampath/ansible-role-openshift-spices/issues[Issues]
+https://github.com/kameshsampath/ansible-role-openshift-spices/issues[Issues]
