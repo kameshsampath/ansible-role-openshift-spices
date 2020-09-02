@@ -92,3 +92,4 @@
     kind: Secret
     name:  "kubeadmin"
     namespace: kube-system
+  when: remove_kube_admin
