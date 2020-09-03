@@ -1,10 +1,4 @@
 ---
-- name: Set users fact
-  set_fact:
-    workshopper_home: "{{ ansible_env.HOME }}/.workshopper"
-    htpasswdidp_secret_name: htpasswdidp-secret
-    htpasswdidp_name: workshopper
-
 - name: Create Cloud Profile Directory
   file:
     path: "{{ workshopper_home }}/{{ cloud_profile  }}"
@@ -23,6 +17,7 @@
       path: "{{ workshopper_home }}/{{ cloud_profile }}/htpass.users"
       name: "{{ users.ocpadmin_username|default('ocpadmin') }}"
       password: "{{ ocpadmin_password }}"
+  register: gen_htpass
 
 - name: "Remove  {{ htpasswdidp_secret_name }} if it exists"
   community.kubernetes.k8s:
@@ -31,6 +26,7 @@
     kind: Secret
     name:  "{{ htpasswdidp_secret_name }}"
     namespace: openshift-config
+  when: openshift_admin_user != 'kubedmin' and gen_htpass.changed
 
 - name: "Create  {{ htpasswdidp_secret_name }}"
   community.kubernetes.k8s:
@@ -45,6 +41,7 @@
         htpasswd: "{{ item|b64encode }}"
   no_log: True
   with_file: "{{ workshopper_home }}/{{ cloud_profile }}/htpass.users"
+  when: gen_htpass.changed
 
 - name: "Add {{ htpasswdidp_name }} Auth Provider"
   community.kubernetes.k8s:
@@ -63,10 +60,13 @@
            htpasswd:
              fileData:
                name: "{{ htpasswdidp_secret_name }}"
+  register: outh_provider_result
+  when: gen_htpass.changed
 
 - name: Wait for the Auth provider rollout
   pause:
     seconds: 30
+  when: outh_provider_result and outh_provider_result.changed
 
 - name: Add cluster-admin role to ocpadmin
   community.kubernetes.k8s:
@@ -84,6 +84,7 @@
       - apiGroup: rbac.authorization.k8s.io
         kind: User
         name: ocpadmin
+  when: gen_htpass.changed
 
 - name: "Remove default kubeadmin user"
   community.kubernetes.k8s:
@@ -92,4 +93,4 @@
     kind: Secret
     name:  "kubeadmin"
     namespace: kube-system
-  when: remove_kube_admin
+  when: remove_kube_admin and openshift_admin_user != 'kubedmin'

@@ -3,7 +3,10 @@ ocp_bin_dir: "{{ ansible_env.HOME }}/openshift/bin"
 ocp_version: 4.5.6
 download_clients: False
 remove_kube_admin: False
-# Users to create
+# Users 
+workshopper_home: "{{ ansible_env.HOME }}/.workshopper"
+htpasswdidp_secret_name: htpasswdidp-secret
+htpasswdidp_name: htpasswdidp
 users:
   create: False
   prefix: user
