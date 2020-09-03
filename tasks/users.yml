@@ -26,7 +26,7 @@
     kind: Secret
     name:  "{{ htpasswdidp_secret_name }}"
     namespace: openshift-config
-  when: openshift_admin_user != 'kubedmin' and gen_htpass.changed
+  when: openshift_admin_user != 'kubeadmin' and gen_htpass.changed
 
 - name: "Create  {{ htpasswdidp_secret_name }}"
   community.kubernetes.k8s:
@@ -93,4 +93,4 @@
     kind: Secret
     name:  "kubeadmin"
     namespace: kube-system
-  when: remove_kube_admin and openshift_admin_user != 'kubedmin'
+  when: remove_kube_admin and openshift_admin_user != 'kubeadmin'
