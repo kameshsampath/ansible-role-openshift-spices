@@ -1,0 +1,14 @@
+---
+- name: ReLogin with new OpenShift Admin
+  community.kubernetes.k8s_auth:
+    host: "{{ api_server }}"
+    username: "{{ users.ocpadmin_username | default('ocpadmin') }}"
+    password: "{{ ocpadmin_password }}"
+    validate_certs: "{{ verify_certs }}"
+  register: k8s_auth_results
+  when: gen_htpass.changed and openshift_admin_user == 'kubeadmin'
+
+- name: Update OpenShift Auth Key
+  set_fact:
+      k8s_auth_api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+  when: gen_htpass.changed and openshift_admin_user == 'kubeadmin'

@@ -11,31 +11,62 @@
   include_tasks: deploy_acm.yml
   when: deploy_acm
 
+- name: Undeploy ACM
+  include_tasks: undeploy_acm.yml
+  when: undeploy_acm
+
 - name: Deploy Argo CD
   include_tasks: deploy_argocd.yml
   when: deploy_argocd
+
+- name: Undeploy Argo CD
+  include_tasks: undeploy_argocd.yml
+  when: undeploy_argocd
 
 - name: Deploy Camel K
   include_tasks: deploy_camel_k.yml
   when: deploy_camel_k
 
+- name: Undeploy Camel K
+  include_tasks: undeploy_camel_k.yml
+  when: undeploy_camel_k
+
 - name: Deploy Eclipse Che
   include_tasks: deploy_che.yml
   when: deploy_che
+
+- name: Undeploy Eclipse Che
+  include_tasks: undeploy_che.yml
+  when: undeploy_che
 
 - name: Deploy OpenShift Pipelines
   include_tasks: deploy_pipelines.yml
   when: deploy_pipelines
 
+- name: Undeploy OpenShift Pipelines
+  include_tasks: deploy_pipelines.yml
+  when: undeploy_pipelines
+
 - name: Deploy OpenShift Serverless
   include_tasks: deploy_serverless.yml
   when: deploy_serverless
 
+- name: Undeploy OpenShift Serverless
+  include_tasks: deploy_serverless.yml
+  when: undeploy_serverless
 
 - name: Deploy OpenShift Service Mesh
   include_tasks: deploy_servicemesh.yml
   when: deploy_servicemesh
 
+- name: Undeploy OpenShift Service Mesh
+  include_tasks: deploy_servicemesh.yml
+  when: undeploy_servicemesh
+
 - name: Deploy Strimzi Kafka
   include_tasks: deploy_kafka.yml
   when: deploy_kafka
+
+- name: undeploy Strimzi Kafka
+  include_tasks: deploy_kafka.yml
+  when: undeploy_kafka
