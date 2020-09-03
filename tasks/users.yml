@@ -39,7 +39,6 @@
         namespace: openshift-config
       data:
         htpasswd: "{{ item|b64encode }}"
-  no_log: True
   with_file: "{{ workshopper_home }}/{{ cloud_profile }}/htpass.users"
   when: gen_htpass.changed
 
