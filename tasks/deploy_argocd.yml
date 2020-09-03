@@ -51,4 +51,4 @@
   register: argocd_status
   retries: 18
   delay: 10
-  until: argocd_status.resources and argocd_status.resources[0].status.phase == 'Available'
+  until: argocd_status.resources and argocd_status.resources[0].status and argocd_status.resources[0].status.phase == 'Available'
