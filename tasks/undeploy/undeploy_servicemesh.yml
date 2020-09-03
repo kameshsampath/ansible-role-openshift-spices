@@ -1,0 +1,69 @@
+---
+- name: Remove Projects to Servicemesh Member Roll
+  community.kubernetes.k8s:
+    state: absent
+    definition: "{{ lookup('template','servicemesh/service-member-roll.yaml.j2') | from_yaml  }}"
+    wait: yes
+    no_log: True
+    wait_condition:
+      type: Ready
+  when: servicemesh_members.create
+
+- name: Delete ServiceMesh projects
+  community.kubernetes.k8s:
+    state: absent
+    name: "{{ item }}"
+  with_sequence:
+    start="{{ servicemesh_members.start }}" end="{{ servicemesh_members.end }}" format="{{ servicemesh_members.prefix }}%02x"
+  when: servicemesh_members.create
+
+- name: Delete Istio Control Plane
+  community.kubernetes.k8s:
+    state: absent
+    namespace: istio-system
+    definition: "{{ item | from_yaml }}"
+    wait: yes
+    wait_timeout: 300
+    wait_sleep: 10
+    wait_condition:
+      type: Ready
+      status: False
+  with_file: "{{ servicemesh_cr }}"
+  no_log: "{{ supress_log }}"
+  register: istio_control_plane_status
+
+- name: Delete istio-system Namespace
+  community.kubernetes.k8s:
+    state: absent
+    kind: Namespace
+    name: istio-system
+
+- name: Uninstall Red Hat Servicemesh
+  community.kubernetes.k8s:
+    state: absent
+    definition: "{{ lookup('template','servicemesh/servicemesh.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Uninstall Red Hat Servicemesh Components::Kiali
+  community.kubernetes.k8s:
+    state: absent
+    definition: "{{ lookup('template','servicemesh/kiali.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Uninstall Red Hat Servicemesh Components::Jaeger
+  community.kubernetes.k8s:
+    state: absent
+    definition: "{{ lookup('template','servicemesh/jaeger.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Uninstall Red Hat Servicemesh Components::ElasticSearch
+  community.kubernetes.k8s:
+    state: absent
+    definition: "{{ lookup('template','servicemesh/elasticsearch.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Delete openshift-operators-redhat Namespace
+  community.kubernetes.k8s:
+    state: absent
+    kind: Namespace
+    name: "openshift-operators-redhat"

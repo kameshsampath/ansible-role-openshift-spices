@@ -1,0 +1,47 @@
+---
+- name: Get Argo CD Name
+  set_fact:
+    argocd_cr: "{{ item | from_yaml }}"
+  no_log: yes
+  with_file:
+  -  "{{ argocd_cr }}"
+ 
+- name: Delete Argo CD
+  community.kubernetes.k8s:
+    state: absent
+    namespace: "{{ argocd_namespace }}"
+    definition: "{{ item | from_yaml }}"
+    wait: yes
+  with_file:
+   - "{{ argocd_cr }}"
+
+- name: Waiting for Argo CD components to be deleted
+  community.kubernetes.k8s_info:
+    api_version: argoproj.io/v1alpha1
+    kind: ArgoCD
+    namespace: "{{ argocd_namespace }}"
+    name: "{{ argocd_cr.metadata.name }}"
+  register: argocd_status
+  retries: 18
+  delay: 10
+  until: argocd_status.resources and argocd_status.resources[0].status and argocd_status.resources[0].status.phase != 'Available'
+
+- name: Uninstall Operator::Argo CD
+  community.kubernetes.k8s:
+    state: absent
+    namespace: "{{ argocd_namespace }}"
+    definition: "{{ lookup('template','argocd/subscription.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Uninstall Argo CD::Operator Group
+  community.kubernetes.k8s:
+    state: absent
+    namespace: "{{ argocd_namespace }}"
+    definition: "{{ lookup('template','argocd/operator-group.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Delete Argo CD namespace
+  community.kubernetes.k8s:
+     state: absent
+     kind: Namespace
+     name: "{{ argocd_namespace }}"

@@ -1,0 +1,47 @@
+---
+- name: Get Multi Cluster Hub Name
+  set_fact:
+    acm_cr: "{{ item | from_yaml }}"
+  no_log: yes
+  with_file:
+  -  "{{ acm_cr }}"
+
+- name: Undeploy Multi Cluster Hub
+  community.kubernetes.k8s:
+    state: absent
+    namespace: "{{ acm_namespace }}"
+    definition: "{{ item | from_yaml }}"
+    wait: no
+  with_file:
+   - "{{ acm_cr }}"
+
+- name: Waiting for Multi Cluster Hub to be undeployed
+  community.kubernetes.k8s_info:
+    api_version: operator.open-cluster-management.io/v1
+    kind: MultiClusterHub
+    namespace: "{{ acm_namespace }}"
+    name: "{{ acm_cr.metadata.name }}"
+  register: acm_status
+  retries: 30
+  delay: 10
+  until: acm_status.resources and acm_status.resources[0].status.phase != 'Running'
+
+- name: Uninstall Operator::ACM
+  community.kubernetes.k8s:
+    state: absent
+    namespace: "{{ acm_namespace }}"
+    definition: "{{ lookup('template','acm/subscription.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Delete ACM::Operator Group
+  community.kubernetes.k8s:
+    state: absent
+    namespace: "{{ acm_namespace }}"
+    definition: "{{ lookup('template','acm/operator-group.yaml.j2') | from_yaml  }}"
+    wait: yes
+
+- name: Delete ACM namespace
+  community.kubernetes.k8s:
+    state: absent
+    kind: Namespace
+    name: "{{ acm_namespace }}"
