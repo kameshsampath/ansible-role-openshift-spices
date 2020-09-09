@@ -10,11 +10,14 @@ spec:
   rbac:
     defaultPolicy: "role:readonly"
     policy: |
-      g, system:cluster-admins, role:admin
+      g, argocd-admins, role:admin
     scopes: "[groups]"
   server:
     route:
       enabled: true
-  # tls:
-  #   ca:
-  #     secretName: my-dev-ca
+    tls:
+      ca:
+        # certificate authority
+        configMapName: tmp-ca
+        # tls.key and cert
+        secretName: tmp-crt

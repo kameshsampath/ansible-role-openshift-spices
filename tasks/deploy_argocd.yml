@@ -52,3 +52,13 @@
   retries: 18
   delay: 10
   until: argocd_status.resources and argocd_status.resources[0].status and argocd_status.resources[0].status.phase == 'Available'
+
+- name: Create Argocd Admins Group
+  community.kubernetes.k8s:
+    state: present
+    definition: |-
+      apiVersion: user.openshift.io/v1
+      kind: Group
+      metadata:
+        name: argocd-admins
+      users: []

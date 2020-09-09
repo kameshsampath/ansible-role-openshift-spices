@@ -88,6 +88,9 @@
     - ReLogin with new OpenShift Admin
     - Update OpenShift Auth Key
 
+- name: Run handlers immediately
+  meta: flush_handlers
+
 - name: "Remove default kubeadmin user"
   community.kubernetes.k8s:
     state: absent
