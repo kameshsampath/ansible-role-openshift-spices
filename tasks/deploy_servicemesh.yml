@@ -1,10 +1,4 @@
 ---
-- name: Create openshift-operators-redhat Namespace
-  community.kubernetes.k8s:
-    state: present
-    kind: Namespace
-    name: "openshift-operators-redhat"
-
 - name: "Install Red Hat Servicemesh Components::ElasticSearch"
   community.kubernetes.k8s:
     state: present
@@ -15,7 +9,6 @@
   include_tasks: utils/wait_for_operator_and_sub.yml
   vars:
     subscription_name: elasticsearch-operator
-    sub_namespace: "openshift-operators-redhat"
 
 - name: "Install Red Hat Servicemesh Components::Jaeger"
   community.kubernetes.k8s:
@@ -67,7 +60,6 @@
     wait_condition:
       type: Ready
   with_file: "{{ servicemesh_cr }}"
-  no_log: "{{ supress_log }}"
   register: istio_control_plane_status
 
 - name: Create ServiceMesh projects

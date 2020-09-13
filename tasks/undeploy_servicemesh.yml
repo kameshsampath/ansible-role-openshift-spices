@@ -29,7 +29,6 @@
       type: Ready
       status: False
   with_file: "{{ servicemesh_cr }}"
-  no_log: "{{ supress_log }}"
   register: istio_control_plane_status
 
 - name: Delete istio-system Namespace
