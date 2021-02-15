@@ -1,14 +1,14 @@
 ---
-- name: "Install Operator::Strimzi Kafka"
+- name: "Install Operator::AMQ Streams"
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template','kafka/subscription.yaml.j2') | from_yaml  }}"
     wait: yes
 
-- name: "Install Strimzi::Kafka"
+- name: "Install Red Hat::AMQ Streams"
   include_tasks: utils/wait_for_operator_and_sub.yml
   vars:
-    subscription_name: strimzi-kafka-operator
+    subscription_name: amq-streams-operator
 
 - name: "Create Kafka Namespace"
   community.kubernetes.k8s:
@@ -16,16 +16,16 @@
     kind: Namespace
     name: "{{ kakfa_cluster_namespace }}"
 
-- name: "Create Strimzi Kafka cluster::{{ kakfa_cluster_name }}"
+- name: "Create Kafka cluster::{{ kakfa_cluster_name }}"
   community.kubernetes.k8s:
     state: present
     definition: "{{ item | from_yaml }}"
     wait: yes
-    wait_timeout: 180
+    wait_timeout: 600
     wait_sleep: 10
     wait_condition:
       type: Ready
-  no_log: True
-  register: strimzi_kafka_status
+  no_log: False
+  register: amq_streams_status
   with_file:
-   - "{{ strimzi_kafka_cr }}"
+   - "{{ amq_streams_cr }}"

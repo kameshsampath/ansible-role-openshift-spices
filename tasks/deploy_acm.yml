@@ -49,6 +49,6 @@
     namespace: "{{ acm_namespace }}"
     name: "{{ acm_cr.metadata.name }}"
   register: acm_status
-  retries: 30
+  retries: 60
   delay: 10
-  until: acm_status.resources and acm_status.resources[0].status.phase == 'Running'
+  until: acm_status.resources and acm_status.resources[0].status is defined and acm_status.resources[0].status.phase == 'Running'

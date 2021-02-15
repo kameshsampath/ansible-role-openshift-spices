@@ -1,4 +1,4 @@
-# Ansible role for RedHat Developers Workshop
+# Ansible role for OpenShift Operators
 
 Ansible to configure https://try.openshift.com[OpenShift] cluster for Red Hat Developer Workshops and Demos.
 
@@ -6,21 +6,19 @@ The role can also be used to install and configure:
 
 - [*] Red Hat OpenShift Serverless both Serving and Eventing
 
-- [*] Red Hat OpenShift Pipelines
+- [*] https://www.openshift.com/learn/topics/pipelines[Red Hat OpenShift Pipelines]
 
 - [*] https://argoproj.github.io/argo-cd/[Argo CD]
 
-- [*] Red Hat OpenShift Service Mesh
+- [*] https://www.openshift.com/learn/topics/service-mesh[Red Hat OpenShift Service Mesh]
 
-- [*] https://strimzi.io[Strimzi Kafka]
+- [*] https://www.redhat.com/en/resources/amq-streams-datasheet[Red Hat AMQ Streams]
 
 - [*] https://www.redhat.com/en/technologies/management/advanced-cluster-management[Red Hat Advanced Cluster Management for Kubernetes]
 
-- [ ] https://skupper.io[Skupper]
-
 - [*] https://camel.apache.org/docs/#camel-k[Apache Camel-K]
 
-- [*] https://www.eclipse.org/che/[Eclipse Che]
+- [*] https://www.redhat.com/en/technologies/jboss-middleware/codeready-workspaces[Red Hat Code Ready Workspaces]
 
 == Requirements
 
