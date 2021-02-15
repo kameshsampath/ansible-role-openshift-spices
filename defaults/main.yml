@@ -1,6 +1,6 @@
 ---
 ocp_bin_dir: "{{ ansible_env.HOME }}/openshift/bin"
-ocp_version: 4.5.6
+ocp_version: 4.6
 download_clients: False
 remove_kube_admin: False
 # Users 
@@ -16,7 +16,7 @@ users:
 # Serverless(Knative)
 deploy_serverless: False
 undeploy_serverless: False
-serverless_subcription_channel: "4.5"
+serverless_subcription_channel: "4.6"
 knative_serving_cr: serverless/cr/serving.yaml
 knative_eventing_cr: serverless/cr/eventing.yaml
 # Pipelines
@@ -28,12 +28,12 @@ undeploy_argocd: False
 argocd_namespace: argocd
 argocd_cr: argocd/cr.yaml
 argocd_release_channel: alpha
-#Strimzi Kafka
+#AMQ Streams(Strimzi Kafka)
 deploy_kafka: False
 undeploy_kafka: False
 kakfa_cluster_name: my-cluster
 kakfa_cluster_namespace: kafka
-strimzi_kafka_cr: kafka/cr.yaml
+amq_streams_cr: kafka/cr.yaml
 knative_eventing_kafka_cr: kafka/eventing/cr.yaml
 # Apache Camel-k
 deploy_camel_k: False
@@ -41,7 +41,7 @@ undeploy_camel_k: False
 # Red Hat Servicemesh
 deploy_servicemesh: False
 undeploy_servicemesh: False
-servicemesh_es_channel: 4.5
+servicemesh_es_channel: 4.6
 servicemesh_cr: servicemesh/cr.yaml
 servicemesh_members:
   create: False

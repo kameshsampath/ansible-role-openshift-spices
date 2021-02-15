@@ -1,4 +1,4 @@
-# Ansible role for RedHat Developers Workshop
+# Ansible role for OpenShift Operators
 
 Ansible to configure https://try.openshift.com[OpenShift] cluster for Red Hat Developer Workshops and Demos.
 
@@ -15,8 +15,6 @@ The role can also be used to install and configure:
 - [*] https://strimzi.io[Strimzi Kafka]
 
 - [*] https://www.redhat.com/en/technologies/management/advanced-cluster-management[Red Hat Advanced Cluster Management for Kubernetes]
-
-- [ ] https://skupper.io[Skupper]
 
 - [*] https://camel.apache.org/docs/#camel-k[Apache Camel-K]
 
